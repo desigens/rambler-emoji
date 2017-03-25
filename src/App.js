@@ -5,6 +5,8 @@ import svg from './logo.svg';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+import excluded from './excluded.js';
+
 // http://apps.timwhitlock.info/emoji/tables/unicode
 const allEmojis = [
       [0x1F601, 0x1F64F],
@@ -17,7 +19,7 @@ const allEmojis = [
       return sum.concat(Array.from({length: range[1] - range[0]}, (a, i) => {
         return range[0] + i;
       }));
-    }, []);
+    }, []).filter(i => !excluded.includes(i));
 
 const RamblerEmoji = React.createClass({
 
@@ -40,7 +42,8 @@ const RamblerEmoji = React.createClass({
     this.setState({
       frame: next === this.state.max ? 0 : next
     }, () => {
-      this._intervals.push(setTimeout(this.nextFrame, this.state.speed));
+      !this.state.pause &&
+        this._intervals.push(setTimeout(this.nextFrame, this.state.speed));
     });
   },
 
@@ -66,6 +69,35 @@ const RamblerEmoji = React.createClass({
     }, () => {
       this.nextFrame()
     });
+
+    window.addEventListener('keydown', this.keys);
+  },
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.keys);
+  },
+
+  keys(e) {
+      
+      // right
+      if (e.keyCode === 39) {
+        this._clearIntervals();
+        this.nextFrame();
+      }
+
+      // left
+      if (e.keyCode === 37) {
+        this.state.frame && this.goToFrame(this.state.frame - 1);
+      }
+
+      // space
+      if (e.keyCode === 32) {
+        const frame = this.props.frames[this.state.frame];
+        const code = '0x' + Number(frame).toString(16).toUpperCase();
+
+        // mark to console
+        console.log(code);
+      }
   },
 
   _intervals: [],
