@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import svg from './logo.svg';
-import fullscreen from './fullscreen.svg';
 
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -163,7 +162,7 @@ function ramdomize(array) {
 }
 
 function enterFullscreen(){
-    var element = document.querySelector('html');
+    const element = document.querySelector('html');
     if (element.mozRequestFullScreen) {
         element.mozRequestFullScreen();
     } else if (element.webkitRequestFullScreen) {
