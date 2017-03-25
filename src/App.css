@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 56vw;
+}
+
+.emoji {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 12.6vw;
+  line-height: 1;
+  width: 1em;
+  position: relative;
+  margin-top: .09em;
+  margin-left: .01em;
+}
+
+/*Limit with max posible emojis size in Chrome*/
+/*TODO check on retina display*/
+@media (min-width: 1000px) {
+  .emoji {
+    font-size: 126px;
+  }
+  .logo {
+    width: 560px;    
+  }
+}
+
+.footer {
+  text-align: right;
+  position: fixed;
+  padding: 20px;
+  right: 0;
+  bottom: 0;
+  font-size: 10px;
+  line-height: 20px;
+  color: #ddd;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.controls {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls > div {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.controls > div:nth-child(1) {
+  flex: .5;
+}
+
+.controls > div:nth-child(3) {
+  flex: .12;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.current {
+  float: right;
+}
+
+.play-pause {
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  border: 2px #e9e9e9 solid;
+  padding: 0 1em;
+  line-height: 23px;
+  cursor: pointer;
+  min-width: 4.2em;
+  text-align: center;
+  color: #315EFB;
+}
+
+.play-pause:hover {
+  border-color: #315EFB;
+  color: #315EFB;
+}
+
+.play {
+  color: #315EFB;
+}
+
+.pause span {
+  letter-spacing: -.5em;
+  margin-right: .2em
+}

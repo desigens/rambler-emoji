@@ -1,0 +1,21 @@
+{
+  "name": "rambler-emoji",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "rc-slider": "^6.3.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "publish": "npm run build && scp -r ./build/* desigens.com:/home/desigens/www/desigens.com/r",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "homepage": "/r"
+}
