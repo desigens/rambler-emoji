@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import svg from './logo.svg';
+import fullscreen from './fullscreen.svg';
 
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -98,6 +99,8 @@ const RamblerEmoji = React.createClass({
     return (
       <div className="root">
 
+        <div onClick={enterFullscreen} title="Fullscreen" className="fscreen no-fscreen"/>
+
         <div className="content" onClick={this.pause}>
           <img className="logo" src={svg} alt="Рамблер/"/>
           <span className="emoji">
@@ -105,7 +108,7 @@ const RamblerEmoji = React.createClass({
           </span>
         </div>
 
-        <div className="footer">
+        <div className="footer no-fscreen">
           <div className="controls">
             <div>
               Interval: 
@@ -157,6 +160,15 @@ function ramdomize(array) {
       );
   }
   return randomizedArray;
+}
+
+function enterFullscreen(){
+    var element = document.querySelector('html');
+    if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen();
+    }
 }
 
 export default () => <RamblerEmoji frames={ramdomize(allEmojis)}/>;
