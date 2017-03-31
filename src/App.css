@@ -12,6 +12,7 @@ body {
   position: relative;
 }
 
+/*
 .logo {
   display: inline-block;
   vertical-align: middle;
@@ -29,9 +30,11 @@ body {
   margin-top: .09em;
   margin-left: .01em;
 }
+*/
 
 /*Limit with max posible emojis size in Chrome*/
-/*TODO check on retina display*/
+/*TODO check on non-retina display*/
+/*
 @media (min-width: 1000px) {
   .emoji {
     font-size: 126px;
@@ -39,6 +42,11 @@ body {
   .logo {
     width: 560px;    
   }
+}
+*/
+
+.content canvas {
+  width: 80%;
 }
 
 .footer {
@@ -132,9 +140,9 @@ body {
   display: none;
 }
 
-:fullscreen .content {
-  pointer-events: none;
-}
+/*:fullscreen .content {*/
+  /*pointer-events: none;*/
+/*}*/
 
 .no-fullscreen .fscreen {
   display: none;

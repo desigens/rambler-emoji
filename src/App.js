@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import svg from './logo.svg';
 
+import { Canvas } from './Canvas.jsx';
+
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -132,28 +134,29 @@ const RamblerEmoji = React.createClass({
 
         <div onClick={enterFullscreen} title="Fullscreen" className="fscreen no-fscreen"/>
 
-        <div className="content" onClick={this.pause}>
-          <img className="logo" src={svg} alt="Рамблер/"/>
-          <span className="emoji">
-            {emoji}
-          </span>
+        <div className="content">
+          <Canvas logoSrc={svg} emoji={emoji}/>
+          {/*<img className="logo" src={svg} alt="Рамблер/"/>*/}
+          {/*<span className="emoji">*/}
+            {/*{emoji}*/}
+          {/*</span>*/}
         </div>
 
         <div className="footer no-fscreen">
           <div className="controls">
             <div>
-              Interval: 
+              Interval:
               <span className="current">{this.state.speed / 1000}s</span>
-              <Slider step={100} minimumTrackTintColor={color} max={5000} 
+              <Slider step={100} minimumTrackTintColor={color} max={5000}
                 value={this.state.speed} onChange={this.setSpeed} />
             </div>
 
             <div>
-              Frames: 
+              Frames:
               <span className="current">
                 {code} ({this.state.frame + 1}/{this.state.max})
               </span>
-              <Slider minimumTrackTintColor={color} max={this.state.max - 1} 
+              <Slider minimumTrackTintColor={color} max={this.state.max - 1}
                 value={this.state.frame} onChange={this.goToFrame} />
             </div>
             <div>
