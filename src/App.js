@@ -66,11 +66,20 @@ const RamblerEmoji = React.createClass({
   },
 
   componentDidMount() {
-    this.setState({
-      max: this.props.frames.length
-    }, () => {
-      this.nextFrame()
-    });
+    const startFrame = this.props.frames.indexOf(parseInt(window.location.hash.split('#')[1], 16));
+    if (startFrame > -1) {
+      this.setState({
+        frame: startFrame,
+        pause: true,
+        max: this.props.frames.length,
+      })
+    } else {
+      this.setState({
+        max: this.props.frames.length,
+      }, () => {
+        this._intervals.push(setTimeout(this.nextFrame, this.state.speed));
+      });
+    }
 
     window.addEventListener('keydown', this.keys);
   },
@@ -144,22 +153,21 @@ const RamblerEmoji = React.createClass({
 
         <div className="footer no-fscreen">
           <div className="controls">
-            <div>
+            <div className="control_interval">
               Interval:
               <span className="current">{this.state.speed / 1000}s</span>
               <Slider step={100} minimumTrackTintColor={color} max={5000}
                 value={this.state.speed} onChange={this.setSpeed} />
             </div>
-
-            <div>
-              Frames:
+            <div className="control_frames">
+              Frame:
               <span className="current">
                 {code} ({this.state.frame + 1}/{this.state.max})
               </span>
               <Slider minimumTrackTintColor={color} max={this.state.max - 1}
                 value={this.state.frame} onChange={this.goToFrame} />
             </div>
-            <div>
+            <div className="control_play">
               <PlayPause onClick={this.pause} paused={this.state.pause}/>
             </div>
           </div>

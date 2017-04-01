@@ -69,17 +69,18 @@ body {
   align-items: center;
 }
 
-.controls > div {
-  flex: 1;
-  padding: 0 10px;
-}
-
-.controls > div:nth-child(1) {
+.control_interval {
   flex: .5;
+  padding-right: 15px;
 }
 
-.controls > div:nth-child(3) {
-  flex: .12;
+.control_frames {
+  flex: 1;
+  padding-right: 15px;
+}
+
+.control_play {
+  flex: .1;
   padding-top: 20px;
   text-align: center;
 }
