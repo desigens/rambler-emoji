@@ -17,6 +17,9 @@ const allEmojis = [
   [0x1F681, 0x1F6C5],
   [0x1F680, 0x1F6C0],
   [0x1F30D, 0x1F567],
+
+  // Set of empty emojies for debug
+  // [0x3F601, 0x3F64F],
 ].reduce((sum, range) => {
   return sum.concat(Array.from({length: range[1] - range[0]}, (a, i) => {
     return range[0] + i;
@@ -144,7 +147,7 @@ const RamblerEmoji = React.createClass({
         <div onClick={enterFullscreen} title="Fullscreen" className="fscreen no-fscreen"/>
 
         <div className="content">
-          <Canvas logoSrc={svg} emoji={emoji}/>
+          <Canvas logoSrc={svg} emoji={emoji} code={code}/>
           {/*<img className="logo" src={svg} alt="Рамблер/"/>*/}
           {/*<span className="emoji">*/}
             {/*{emoji}*/}
