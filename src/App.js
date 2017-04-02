@@ -11,17 +11,17 @@ import excluded from './excluded.js';
 
 // http://apps.timwhitlock.info/emoji/tables/unicode
 const allEmojis = [
-      [0x1F601, 0x1F64F],
-      [0x2702, 0x27B0],
-      [0x1F600, 0x1F636],
-      [0x1F681, 0x1F6C5],
-      [0x1F680, 0x1F6C0],
-      [0x1F30D, 0x1F567],
-    ].reduce((sum, range) => {
-      return sum.concat(Array.from({length: range[1] - range[0]}, (a, i) => {
-        return range[0] + i;
-      }));
-    }, []).filter(i => !excluded.includes(i));
+  [0x1F601, 0x1F64F],
+  [0x2702, 0x27B0],
+  [0x1F600, 0x1F636],
+  [0x1F681, 0x1F6C5],
+  [0x1F680, 0x1F6C0],
+  [0x1F30D, 0x1F567],
+].reduce((sum, range) => {
+  return sum.concat(Array.from({length: range[1] - range[0]}, (a, i) => {
+    return range[0] + i;
+  }));
+}, []).filter(i => !excluded.includes(i));
 
 const RamblerEmoji = React.createClass({
 
@@ -89,26 +89,26 @@ const RamblerEmoji = React.createClass({
   },
 
   keys(e) {
-      
-      // right
-      if (e.keyCode === 39) {
-        this._clearIntervals();
-        this.nextFrame();
-      }
 
-      // left
-      if (e.keyCode === 37) {
-        this.state.frame && this.goToFrame(this.state.frame - 1);
-      }
+    // right
+    if (e.keyCode === 39) {
+      this._clearIntervals();
+      this.nextFrame();
+    }
 
-      // space
-      if (e.keyCode === 32) {
-        const frame = this.props.frames[this.state.frame];
-        const code = '0x' + Number(frame).toString(16).toUpperCase();
+    // left
+    if (e.keyCode === 37) {
+      this.state.frame && this.goToFrame(this.state.frame - 1);
+    }
 
-        // mark to console
-        console.log(code);
-      }
+    // space
+    if (e.keyCode === 32) {
+      const frame = this.props.frames[this.state.frame];
+      const code = '0x' + Number(frame).toString(16).toUpperCase();
+
+      // mark to console
+      console.log(code);
+    }
   },
 
   _intervals: [],
@@ -127,7 +127,7 @@ const RamblerEmoji = React.createClass({
         this._intervals.push(setTimeout(this.nextFrame, this.state.speed / 2));
       });
     } else {
-       this.setState({
+      this.setState({
         pause: true
       });
     }
@@ -157,7 +157,7 @@ const RamblerEmoji = React.createClass({
               Interval:
               <span className="current">{this.state.speed / 1000}s</span>
               <Slider step={100} minimumTrackTintColor={color} max={5000}
-                value={this.state.speed} onChange={this.setSpeed} />
+                      value={this.state.speed} onChange={this.setSpeed}/>
             </div>
             <div className="control_frames">
               Frame:
@@ -165,7 +165,7 @@ const RamblerEmoji = React.createClass({
                 {code} ({this.state.frame + 1}/{this.state.max})
               </span>
               <Slider minimumTrackTintColor={color} max={this.state.max - 1}
-                value={this.state.frame} onChange={this.goToFrame} />
+                      value={this.state.frame} onChange={this.goToFrame}/>
             </div>
             <div className="control_play">
               <PlayPause onClick={this.pause} paused={this.state.pause}/>
@@ -181,7 +181,7 @@ function PlayPause({ onClick, paused }) {
   return (
     <span className="play-pause" onClick={onClick}>
       {paused ? (<span className="play">▶ Play </span>) :
-       (<span className="pause"><span>▎▎</span> Pause</span>)}
+        (<span className="pause"><span>▎▎</span> Pause</span>)}
     </span>
   )
 }
@@ -197,20 +197,20 @@ function ramdomize(array) {
   const arrayToReduce = [].concat(array);
   const randomizedArray = [];
   for (let i = 0; i < length; i++) {
-      randomizedArray.push(
-        arrayToReduce.splice(getRandomInt(0, arrayToReduce.length), 1)[0]
-      );
+    randomizedArray.push(
+      arrayToReduce.splice(getRandomInt(0, arrayToReduce.length), 1)[0]
+    );
   }
   return randomizedArray;
 }
 
-function enterFullscreen(){
-    const element = document.querySelector('html');
-    if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullScreen) {
-        element.webkitRequestFullScreen();
-    }
+function enterFullscreen() {
+  const element = document.querySelector('html');
+  if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
 }
 
 export default () => <RamblerEmoji frames={ramdomize(allEmojis)}/>;
