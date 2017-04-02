@@ -147,7 +147,7 @@ const RamblerEmoji = React.createClass({
         <div onClick={enterFullscreen} title="Fullscreen" className="fscreen no-fscreen"/>
 
         <div className="content">
-          <Canvas logoSrc={svg} emoji={emoji} code={code}/>
+          <Canvas logoSrc={svg} emoji={emoji} code={code} report={report}/>
           {/*<img className="logo" src={svg} alt="Рамблер/"/>*/}
           {/*<span className="emoji">*/}
             {/*{emoji}*/}
@@ -213,6 +213,19 @@ function enterFullscreen() {
     element.mozRequestFullScreen();
   } else if (element.webkitRequestFullScreen) {
     element.webkitRequestFullScreen();
+  }
+}
+
+function report(code) {
+  if (process.env.NODE_ENV === 'production' && window.yaCounter25279301) {
+    const param = {
+      notSupportedEmoji: {
+        [code]: true
+      }
+    };
+    window.yaCounter25279301.params(param);
+  } else {
+    console.warn(code + ' is not supported');
   }
 }
 
