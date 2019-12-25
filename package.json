@@ -11,7 +11,7 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "publish": "npm run build && scp -r ./build/* desigens.com:/home/desigens/www/desigens.com/r",
+    "publish": "npm run build && scp -r ./build/* desigens.com:/var/www/desigens.com/r",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
