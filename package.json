@@ -8,7 +8,7 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "publish": "npm run build && scp -r ./build/* desigens.com:/var/www/desigens.com/r",
